@@ -1,4 +1,4 @@
-# DocHooks
+# Block Loader
 
 [![BracketSpace Micropackage](https://img.shields.io/badge/BracketSpace-Micropackage-brightgreen)](https://bracketspace.com)
 [![Latest Stable Version](https://poser.pugx.org/micropackage/block-loader/v/stable)](https://packagist.org/packages/micropackage/block-loader)
