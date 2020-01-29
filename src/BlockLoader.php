@@ -7,6 +7,7 @@
 
 namespace Micropackage\BlockLoader;
 
+use Micropackage\ACFBlockCreator\ACFBlockCreator;
 use Micropackage\DocHooks\Helper;
 use Micropackage\Singleton\Singleton;
 
@@ -23,10 +24,7 @@ class BlockLoader extends Singleton {
 	 * @return BlockLoader
 	 */
 	public static function init( $config = [] ) {
-		$instance = self::get();
-		$instance->configure( $config );
-
-		return $instance;
+		return self::get( $config );
 	}
 
 	/**
@@ -70,22 +68,40 @@ class BlockLoader extends Singleton {
 	private $block_ids = [];
 
 	/**
-	 * Initiates Block Loader
+	 * Constructs Block Loader
 	 *
 	 * @since  1.0.0
 	 * @param  array $config Configuration array.
-	 * @return void
 	 */
-	public function configure( $config ) {
+	protected function __construct( $config ) {
 		$this->config = wp_parse_args( $config, [
-			'dir'        => 'blocks',
-			'categories' => [],
-			'wrap'       => true,
-			'wrap_html'  => '<div id="%3$s" class="%2$s">%1$s</div>',
+			'dir'              => 'blocks',
+			'categories'       => [],
+			'wrap'             => true,
+			'wrap_html'        => '<div id="%3$s" class="%2$s">%1$s</div>',
+			'default_category' => false,
 		] );
 
-		if ( is_array( $this->categories ) && 1 === count( $this->categories ) && isset( $this->categories[0]['slug'] ) ) {
+		if ( false === $this->config['default_category'] &&
+			is_array( $this->categories ) &&
+			1 === count( $this->categories ) && isset( $this->categories[0]['slug'] )
+		) {
 			$this->default_category = $this->categories[0]['slug'];
+		}
+
+		if ( class_exists( 'Micropackage\\ACFBlockCreator\\ACFBlockCreator' ) ) {
+			$block_creator_config = array_filter( $this->config, function( $value, $key ) {
+				return in_array( $key, [
+					'blocks_dir',
+					'scss_dir',
+					'block_container_class',
+					'default_category',
+					'package',
+					'license',
+				], true );
+			}, ARRAY_FILTER_USE_BOTH );
+
+			ACFBlockCreator::init( $block_creator_config );
 		}
 
 		Helper::hook( $this );

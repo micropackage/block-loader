@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "92265eac109bb5c64ff5ae40643b9cec",
+    "content-hash": "bd32cd3e4cadf01d639c210d3ede7a5f",
     "packages": [
         {
             "name": "micropackage/dochooks",
-            "version": "1.0.0",
+            "version": "1.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/micropackage/dochooks.git",
-                "reference": "7acb823a716ca30927b3bd2f61ac6413345a71cc"
+                "reference": "3dbaf5d50c0677bd465992b76a25df7b0dfe154e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/micropackage/dochooks/zipball/7acb823a716ca30927b3bd2f61ac6413345a71cc",
-                "reference": "7acb823a716ca30927b3bd2f61ac6413345a71cc",
+                "url": "https://api.github.com/repos/micropackage/dochooks/zipball/3dbaf5d50c0677bd465992b76a25df7b0dfe154e",
+                "reference": "3dbaf5d50c0677bd465992b76a25df7b0dfe154e",
                 "shasum": ""
             },
             "require": {
@@ -45,20 +45,20 @@
                 }
             ],
             "description": "DocHooks - annotated WordPress hooks",
-            "time": "2020-01-07T12:09:18+00:00"
+            "time": "2020-01-28T12:33:02+00:00"
         },
         {
             "name": "micropackage/singleton",
-            "version": "1.0.0",
+            "version": "1.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/micropackage/singleton.git",
-                "reference": "566fbb8bbfa474fe1bda2ee0ae67ed5c00009385"
+                "reference": "bc69d8ff767cfcfad9a80729c5dc4dcfc89aaf6c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/micropackage/singleton/zipball/566fbb8bbfa474fe1bda2ee0ae67ed5c00009385",
-                "reference": "566fbb8bbfa474fe1bda2ee0ae67ed5c00009385",
+                "url": "https://api.github.com/repos/micropackage/singleton/zipball/bc69d8ff767cfcfad9a80729c5dc4dcfc89aaf6c",
+                "reference": "bc69d8ff767cfcfad9a80729c5dc4dcfc89aaf6c",
                 "shasum": ""
             },
             "require": {
@@ -86,7 +86,7 @@
                 }
             ],
             "description": "Singleton implementation",
-            "time": "2020-01-06T19:25:19+00:00"
+            "time": "2020-01-28T14:10:39+00:00"
         }
     ],
     "packages-dev": [
