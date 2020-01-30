@@ -77,8 +77,7 @@ class BlockLoader extends Singleton {
 		$this->config = wp_parse_args( $config, [
 			'dir'              => 'blocks',
 			'categories'       => [],
-			'wrap'             => true,
-			'wrap_html'        => '<div id="%3$s" class="%2$s">%1$s</div>',
+			'wrap'             => '<div id="%3$s" class="%2$s">%1$s</div>',
 			'default_category' => false,
 		] );
 
@@ -324,7 +323,7 @@ class BlockLoader extends Singleton {
 
 		$wrap = apply_filters( 'micropackage/block-loader/block-wrap', (bool) $this->wrap, $block );
 
-		if ( true === $wrap ) {
+		if ( false !== $wrap ) {
 			$classes = [
 				'block',
 				$block['slug'],
@@ -339,7 +338,7 @@ class BlockLoader extends Singleton {
 			}
 
 			$class     = implode( ' ', apply_filters( 'micropackage/block-loader/block-classes', $classes, $block ) );
-			$wrap_html = apply_filters( 'micropackage/block-loader/block-wrap-html', $this->wrap_html, $block );
+			$wrap_html = apply_filters( 'micropackage/block-loader/block-wrap-html', $this->wrap, $block );
 
 			// phpcs:disable WordPress.Security.EscapeOutput.OutputNotEscaped
 			printf(

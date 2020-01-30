@@ -127,13 +127,12 @@ All block parameters will be fetched from template header comment and merged wit
 ## ⚙️ Configuration
 All parameters are optional.
 
-| Parameter                  | Type        | Description                                                  |
-| -------------------------- | ----------- | ------------------------------------------------------------ |
-| **dir**                    | (*string*)  | This is a directory within your theme where block templates are located.<br/>**Default:** `'blocks'` |
-| **categories**             | (*array*)   | Array of custom block categories passed directly to [`block_categories`](https://developer.wordpress.org/reference/hooks/block_categories/) filter.<br />If only one category will be configured, it will be used as default category for all custom blocks.<br />**Default:** `[]` (empty array) |
-| **wrap**                   | (*boolean*) | This option determines whether to add wrapper to each block. If set to `true`, content of `wrap_html` will be used as a wrapper. Otherwise, the block content will be just the template file content.<br/>Works only for ACF due to the differences in block rendering mechanisms.<br/>**Default:** `true` |
-| **wrap_html**              | (**)        | Wrapper content used if `wrap` is set to `true`.<br/>This is passed to `printf` function having 3 additional arguments:<br />- block content from template file, which should be wrapped<br />- block classes string<br />- unique block id<br />**Default:** `'<div id="%3$s" class="%2$s">%1$s</div>'` |
-| `...$block_creator_params` | -           | Additional parameters passed to [ACF Block Creator](https://github.com/micropackage/acf-block-creator/) |
+| Parameter                  | Type              | Description                                                  |
+| -------------------------- | ----------------- | ------------------------------------------------------------ |
+| **dir**                    | (*string*)        | This is a directory within your theme where block templates are located.<br/>**Default:** `'blocks'` |
+| **categories**             | (*array*)         | Array of custom block categories passed directly to [`block_categories`](https://developer.wordpress.org/reference/hooks/block_categories/) filter.<br />If only one category will be configured, it will be used as default category for all custom blocks.<br />**Default:** `[]` (empty array) |
+| **wrap**                   | (*false\|string*) | Wrapper to each block. If set to false, the block content will be just the template file content.<br/>Works only for ACF due to the differences in block rendering mechanisms.<br/>**Default:** `'<div id="%3$s" class="%2$s">%1$s</div>'` |
+| `...$block_creator_params` | -                 | Additional parameters passed to [ACF Block Creator](https://github.com/micropackage/acf-block-creator/) |
 
 ### Categories definition
 
@@ -151,6 +150,16 @@ This is how to define the categories array.
 	],
 	...
 ```
+
+### Wrap template
+
+Parameters used in internal `sprintf`:
+
+1. block content from template file, which should be wrapped
+2. block classes string
+3. unique block id
+
+Example: `'<div id="%3$s" class="%2$s">%1$s</div>'`
 
 ## 📦 About the Micropackage project
 
