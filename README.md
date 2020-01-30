@@ -128,7 +128,7 @@ All parameters are optional.
 
 | Parameter                  | Type              | Description                                                  |
 | -------------------------- | ----------------- | ------------------------------------------------------------ |
-| **dir**                    | (*string*)        | This is a directory within your theme where block templates are located.<br/>**Default:** `'blocks'` |
+| **dir**                    | (*string*)        | This is a directory within your theme where block templates are located. Relative path.<br/>**Default:** `'blocks'` |
 | **categories**             | (*array*)         | Array of custom block categories passed directly to [`block_categories`](https://developer.wordpress.org/reference/hooks/block_categories/) filter.<br />If only one category will be configured, it will be used as default category for all custom blocks.<br />**Default:** `[]` (empty array) |
 | **wrap**                   | (*false\|string*) | Wrapper to each block. If set to false, the block content will be just the template file content.<br/>Works only for ACF due to the differences in block rendering mechanisms.<br/>**Default:** `'<div id="%3$s" class="%2$s">%1$s</div>'` |
 | `...$block_creator_params` | -                 | Additional parameters passed to [ACF Block Creator](https://github.com/micropackage/acf-block-creator/) |
@@ -178,4 +178,4 @@ GNU General Public License (GPL) v3.0. See the [LICENSE](./LICENSE) file for mor
 
 ## © Credits
 
-The Loader engine is based on the [palmiak](https://github.com/palmiak)'s' [Timber ACF WP Blocks](https://github.com/palmiak/timber-acf-wp-blocks).
+The Loader engine is based on the [palmiak](https://github.com/palmiak)'s [Timber ACF WP Blocks](https://github.com/palmiak/timber-acf-wp-blocks).
