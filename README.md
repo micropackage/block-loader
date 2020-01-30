@@ -61,8 +61,7 @@ Before you can start creating blocks you need to initiate the block loader passi
 Micropackage\BlockLoader\BlockLoader::init( [
 	'dir'        => 'blocks',
 	'categories' => [],
-	'wrap'       => true, // ACF only
-	'wrap_html'  => '<div id="%3$s" class="%2$s">%1$s</div>', // ACF only
+	'wrap'       => '<div id="%3$s" class="%2$s">%1$s</div>', // ACF only
 ] );
 ```
 
@@ -179,4 +178,4 @@ GNU General Public License (GPL) v3.0. See the [LICENSE](./LICENSE) file for mor
 
 ## © Credits
 
-The Loader engine is based on the [palmiak](https://github.com/palmiak) [Timber ACF WP Blocks](https://github.com/palmiak/timber-acf-wp-blocks)
+The Loader engine is based on the [palmiak](https://github.com/palmiak)'s' [Timber ACF WP Blocks](https://github.com/palmiak/timber-acf-wp-blocks).
