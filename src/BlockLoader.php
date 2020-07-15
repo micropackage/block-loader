@@ -261,6 +261,7 @@ class BlockLoader extends Singleton {
 	 */
 	public function get_unique_block_id( $id ) {
 		$fields = [
+			'html_anchor',
 			'title',
 			'headline',
 			'heading',
@@ -268,9 +269,9 @@ class BlockLoader extends Singleton {
 		];
 
 		foreach ( $fields as $key ) {
-			$id = get_field( $key );
+			$temp_id = get_field( $key );
 
-			if ( $id ) {
+			if ( $temp_id ) {
 				$id = sanitize_title( $id );
 				break;
 			}

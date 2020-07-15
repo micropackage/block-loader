@@ -6,6 +6,10 @@
 [![Total Downloads](https://poser.pugx.org/micropackage/block-loader/downloads)](https://packagist.org/packages/micropackage/block-loader)
 [![License](https://poser.pugx.org/micropackage/block-loader/license)](https://packagist.org/packages/micropackage/block-loader)
 
+<p align="center">
+    <img src="https://bracketspace.com/extras/micropackage/micropackage-small.png" alt="Micropackage logo"/>
+</p>
+
 ## 🧬 About Block Loader
 
 Block Loader loads the Gutenberg Block configuration directly out of the block template file. It parses the file header comment figuring out hwo to register the Block.
