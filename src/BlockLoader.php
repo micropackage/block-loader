@@ -272,7 +272,7 @@ class BlockLoader extends Singleton {
 			$temp_id = get_field( $key );
 
 			if ( $temp_id ) {
-				$id = sanitize_title( $id );
+				$id = sanitize_title( $temp_id );
 				break;
 			}
 		}
