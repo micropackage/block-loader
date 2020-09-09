@@ -1,6 +1,6 @@
 {
 	"name": "micropackage/block-loader",
-	"version": "1.0.2",
+	"version": "1.0.3",
 	"description": "Block Loader - automatic Gutenberg blocks from template files.",
 	"license": "GPL-3.0-or-later",
 	"authors": [
