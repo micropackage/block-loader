@@ -9,6 +9,7 @@ namespace Micropackage\BlockLoader;
 
 use Micropackage\ACFBlockCreator\ACFBlockCreator;
 use Micropackage\DocHooks\Helper;
+use Micropackage\Filesystem\Filesystem;
 use Micropackage\Singleton\Singleton;
 
 /**
@@ -68,18 +69,31 @@ class BlockLoader extends Singleton {
 	private $block_ids = [];
 
 	/**
+	 * Root directory
+	 *
+	 * @var string
+	 */
+	private $root_dir;
+
+	/**
 	 * Constructs Block Loader
 	 *
 	 * @since  1.0.0
 	 * @param  array $config Configuration array.
 	 */
 	protected function __construct( $config ) {
-		$this->config = wp_parse_args( $config, [
-			'dir'              => 'blocks',
-			'categories'       => [],
-			'wrap'             => '<div id="%3$s" class="%2$s">%1$s</div>',
-			'default_category' => false,
-		] );
+		$this->config = apply_filters(
+			'micropackage/block-loader/config',
+			wp_parse_args( $config, [
+				'dir'              => 'blocks',
+				'categories'       => [],
+				'wrap'             => '<div id="%3$s" class="%2$s">%1$s</div>',
+				'default_category' => false,
+				'root_dir'         => get_stylesheet_directory(),
+			] )
+		);
+
+		$this->root_dir = apply_filters( 'micropackage/block-loader/root-dir', $this->config['root_dir'] );
 
 		if ( false === $this->config['default_category'] &&
 			is_array( $this->categories ) &&
@@ -97,6 +111,7 @@ class BlockLoader extends Singleton {
 					'default_category',
 					'package',
 					'license',
+					'root_dir',
 				], true );
 			}, ARRAY_FILTER_USE_BOTH );
 
@@ -168,18 +183,36 @@ class BlockLoader extends Singleton {
 	 * @return array
 	 */
 	public function get_blocks() {
-		if ( ! function_exists( 'list_files' ) ) {
-			require_once ABSPATH . '/wp-admin/includes/file.php';
+		$paths = apply_filters(
+			'micropackage/block-loader/paths',
+			[ wp_normalize_path( "$this->root_dir/blocks" ) ]
+		);
+
+		$blocks = [];
+
+		foreach ( $paths as $path ) {
+			$blocks = array_merge( $blocks, $this->get_blocks_from_path( $path ) );
 		}
 
-		$blocks_dir = get_stylesheet_directory() . '/' . trim( $this->config['dir'], '/' );
-		$files      = list_files( $blocks_dir );
-		$blocks     = [];
+		return $blocks;
+	}
+
+	/**
+	 * Get blocks list from specified path
+	 *
+	 * @param  string $path Path.
+	 * @return array        Blocks.
+	 */
+	private function get_blocks_from_path( $path ) {
+		$fs     = new Filesystem( $path );
+		$files  = $fs->dirlist( '/' );
+		$blocks = [];
 
 		if ( $files ) {
 			foreach ( $files as $file ) {
-				$data = $this->get_block_data( $file );
-				$slug = basename( $file, '.php' );
+				$filepath = $fs->path( $file['name'] );
+				$data     = $this->get_block_data( $filepath );
+				$slug     = basename( $filepath, '.php' );
 
 				if ( ! $data['title'] ) {
 					continue;
@@ -188,7 +221,7 @@ class BlockLoader extends Singleton {
 				$data = array_merge( $data, [
 					'name'          => $slug,
 					'slug'          => $slug,
-					'template_file' => $file,
+					'template_file' => $filepath,
 				] );
 
 				if ( ! isset( $data['category'] ) && $this->default_category ) {
@@ -261,6 +294,7 @@ class BlockLoader extends Singleton {
 	 */
 	public function get_unique_block_id( $id ) {
 		$fields = [
+			'html_anchor',
 			'title',
 			'headline',
 			'heading',
@@ -268,10 +302,10 @@ class BlockLoader extends Singleton {
 		];
 
 		foreach ( $fields as $key ) {
-			$id = get_field( $key );
+			$temp_id = get_field( $key );
 
-			if ( $id ) {
-				$id = sanitize_title( $id );
+			if ( $temp_id ) {
+				$id = sanitize_title( $temp_id );
 				break;
 			}
 		}
