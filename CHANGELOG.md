@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [Next]
+
+* [Fixed] Missing Filesystem dependency, thanks to @joshuafredrickson
+
 ## 1.0.3
 
 * [Added] Filters for config
