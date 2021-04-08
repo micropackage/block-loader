@@ -185,7 +185,7 @@ class BlockLoader extends Singleton {
 	public function get_blocks() {
 		$paths = apply_filters(
 			'micropackage/block-loader/paths',
-			[ wp_normalize_path( "$this->root_dir/blocks" ) ]
+			[ wp_normalize_path( "{$this->root_dir}/{$this->config['dir']}" ) ]
 		);
 
 		$blocks = [];
