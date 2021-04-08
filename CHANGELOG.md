@@ -3,6 +3,7 @@ All notable changes to this project will be documented in this file.
 
 ## [Next]
 
+* [Fixed] Hardcoded default blocks path
 * [Fixed] Missing Filesystem dependency, thanks to @joshuafredrickson
 
 ## 1.0.3
