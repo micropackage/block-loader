@@ -214,7 +214,7 @@ class BlockLoader extends Singleton {
 				$data     = $this->get_block_data( $filepath );
 				$slug     = basename( $filepath, '.php' );
 
-				if ( ! $data['title'] ) {
+				if ( ! isset( $data['title'] ) ) {
 					continue;
 				}
 
