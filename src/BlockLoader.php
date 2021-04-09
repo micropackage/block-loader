@@ -210,9 +210,17 @@ class BlockLoader extends Singleton {
 
 		if ( $files ) {
 			foreach ( $files as $file ) {
-				$filepath = $fs->path( $file['name'] );
+				if ( $fs->is_file( $file['name'] ) ) {
+					$filename = $file['name'];
+				} elseif ( $fs->is_file( "{$file['name']}/template.php" ) ) {
+					$filename = "{$file['name']}/template.php";
+				} else {
+					continue;
+				}
+
+				$filepath = $fs->path( $filename );
 				$data     = $this->get_block_data( $filepath );
-				$slug     = basename( $filepath, '.php' );
+				$slug     = basename( $file['name'], '.php' );
 
 				if ( ! isset( $data['title'] ) ) {
 					continue;
