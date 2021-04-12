@@ -185,7 +185,7 @@ class BlockLoader extends Singleton {
 	public function get_blocks() {
 		$paths = apply_filters(
 			'micropackage/block-loader/paths',
-			[ wp_normalize_path( "$this->root_dir/blocks" ) ]
+			[ wp_normalize_path( "{$this->root_dir}/{$this->config['dir']}" ) ]
 		);
 
 		$blocks = [];
@@ -210,11 +210,19 @@ class BlockLoader extends Singleton {
 
 		if ( $files ) {
 			foreach ( $files as $file ) {
-				$filepath = $fs->path( $file['name'] );
-				$data     = $this->get_block_data( $filepath );
-				$slug     = basename( $filepath, '.php' );
+				if ( $fs->is_file( $file['name'] ) ) {
+					$filename = $file['name'];
+				} elseif ( $fs->is_file( "{$file['name']}/template.php" ) ) {
+					$filename = "{$file['name']}/template.php";
+				} else {
+					continue;
+				}
 
-				if ( ! $data['title'] ) {
+				$filepath = $fs->path( $filename );
+				$data     = $this->get_block_data( $filepath );
+				$slug     = basename( $file['name'], '.php' );
+
+				if ( ! isset( $data['title'] ) ) {
 					continue;
 				}
 
