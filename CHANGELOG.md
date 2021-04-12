@@ -1,7 +1,7 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## [Next]
+## 1.0.4
 
 * [Added] Possibility to load blocks from subfolders (block-name/template.php instead of the default block-name.php)
 * [Fixed] Error with invalid array key if file didn't have a block header
