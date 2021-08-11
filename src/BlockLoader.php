@@ -36,6 +36,13 @@ class BlockLoader extends Singleton {
 	private $config;
 
 	/**
+	 * Flag that categories has been added.
+	 *
+	 * @var boolean
+	 */
+	private $categories_added = false;
+
+	/**
 	 * Headers to read from template files
 	 *
 	 * @var array
@@ -331,16 +338,31 @@ class BlockLoader extends Singleton {
 	/**
 	 * Registers custom block category.
 	 *
+	 * `block_categories` filter is deprecated but has been left here for backward compatibility.
+	 *
+	 * @filter block_categories_all
 	 * @filter block_categories
 	 *
 	 * @since 1.0.0
-	 * @param array   $categories Block categories.
-	 * @param WP_Post $post       Current post.
+	 * @param array                             $categories Block categories.
+	 * @param \WP_Post|\WP_Block_Editor_Context $context    Block editor context or post object.
 	 */
-	public function block_categories( $categories, $post ) {
-		if ( $this->categories ) {
+	public function block_categories( $categories, $context ) {
+		$is_deprecated_hook = $context instanceof \WP_Post;
+
+		if (
+			$this->categories &&
+			( ! $is_deprecated_hook || false === $this->categories_added )
+		) {
 			$categories = array_merge( $categories, $this->categories );
 		}
+
+		/**
+		 * `block_categories_all` filter gets executed first, then deprecated `block_categories` gets executed if there is a
+		 * post object available. So we set the flag that the categories has been added already in the first case and reset it
+		 * in the other.
+		 */
+		$this->categories_added = ! $is_deprecated_hook;
 
 		return $categories;
 	}

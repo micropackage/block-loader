@@ -3,6 +3,7 @@ All notable changes to this project will be documented in this file.
 
 ## [Next]
 
+* [Fixed] Deprecated filter name being used
 * [Fixed] Falsey values being casted to `true`, thanks to @dafydd-orphans
 
 ## 1.0.4
