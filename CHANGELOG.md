@@ -1,7 +1,7 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## [Next]
+## 1.0.5
 
 * [Fixed] Deprecated filter name being used
 * [Fixed] Falsey values being casted to `true`, thanks to @dafydd-orphans
