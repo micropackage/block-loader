@@ -1,6 +1,11 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 1.0.5
+
+* [Fixed] Deprecated filter name being used
+* [Fixed] Falsey values being casted to `true`, thanks to @dafydd-orphans
+
 ## 1.0.4
 
 * [Added] Possibility to load blocks from subfolders (block-name/template.php instead of the default block-name.php)
