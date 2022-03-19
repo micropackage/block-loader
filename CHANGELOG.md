@@ -1,6 +1,11 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 1.0.6
+
+* [Removed] `block_categories` deprecated filter
+* [Changed] Updated Composer dependencies
+
 ## 1.0.5
 
 * [Fixed] Deprecated filter name being used
