@@ -10,6 +10,8 @@
     <img src="https://bracketspace.com/extras/micropackage/micropackage-small.png" alt="Micropackage logo"/>
 </p>
 
+Requires WordPress >=5.8.0.
+
 ## 🧬 About Block Loader
 
 Block Loader loads the Gutenberg Block configuration directly out of the block template file. It parses the file header comment figuring out hwo to register the Block.
@@ -133,7 +135,7 @@ All parameters are optional.
 | Parameter                  | Type              | Description                                                  |
 | -------------------------- | ----------------- | ------------------------------------------------------------ |
 | **dir**                    | (*string*)        | This is a directory within your theme where block templates are located. Relative path.<br/>**Default:** `'blocks'` |
-| **categories**             | (*array*)         | Array of custom block categories passed directly to [`block_categories`](https://developer.wordpress.org/reference/hooks/block_categories/) filter.<br />If only one category will be configured, it will be used as default category for all custom blocks.<br />**Default:** `[]` (empty array) |
+| **categories**             | (*array*)         | Array of custom block categories passed directly to [`block_categories_all`](https://developer.wordpress.org/reference/hooks/block_categories_all/) filter.<br />If only one category will be configured, it will be used as default category for all custom blocks.<br />**Default:** `[]` (empty array) |
 | **wrap**                   | (*false\|string*) | Wrapper to each block. If set to false, the block content will be just the template file content.<br/>Works only for ACF due to the differences in block rendering mechanisms.<br/>**Default:** `'<div id="%3$s" class="%2$s">%1$s</div>'` |
 | `...$block_creator_params` | -                 | Additional parameters passed to [ACF Block Creator](https://github.com/micropackage/acf-block-creator/) |
 
