@@ -4,6 +4,7 @@ All notable changes to this project will be documented in this file.
 ## [Next]
 
 * [Removed] `block_categories` deprecated filter
+* [Changed] Updated Composer dependencies
 
 ## 1.0.5
 
