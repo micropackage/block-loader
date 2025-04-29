@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [Next]
+
+* [Added] Render block wrapper attributes
+
 ## 1.0.6
 
 * [Removed] `block_categories` deprecated filter

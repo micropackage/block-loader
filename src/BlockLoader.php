@@ -87,7 +87,9 @@ class BlockLoader extends Singleton {
 			wp_parse_args( $config, [
 				'dir'              => 'blocks',
 				'categories'       => [],
-				'wrap'             => '<div id="%3$s" class="%2$s">%1$s</div>',
+				'wrap'             => $this->supports_block_wrapper_attributes()
+					? '<div id="%3$s" %4$s>%1$s</div>'
+					: '<div id="%3$s" class="%2$s">%1$s</div>',
 				'default_category' => false,
 				'root_dir'         => get_stylesheet_directory(),
 			] )
@@ -387,12 +389,25 @@ class BlockLoader extends Singleton {
 				$wrap_html,
 				$block_content,
 				esc_attr( $class ),
-				esc_attr( $this->get_unique_block_id( $block['slug'] ) )
+				esc_attr( $this->get_unique_block_id( $block['slug'] ) ),
+				$this->supports_block_wrapper_attributes()
+					? get_block_wrapper_attributes( [ 'class' => $class ] )
+					: ''
 			);
 		} else {
 			echo $block_content;
 			// phpcs:enable
 		}
+	}
+
+	/**
+	 * Checks whether WordPress supports block wrapper attributes.
+	 *
+	 * @since [Next]
+	 * @return  bool
+	 */
+	protected function supports_block_wrapper_attributes() {
+		return function_exists( 'get_block_wrapper_attributes' );
 	}
 
 	/**
