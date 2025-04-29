@@ -99,6 +99,7 @@ Block template file needs to have a comment header containing block parameters.
  * Supports Mode: (true|false, ACF only)
  * Supports Multiple: (true|false)
  * Supports Reusable: (true|false)
+ * Supports Spacing: (true)
  */
 ```
 
