@@ -258,7 +258,7 @@ class BlockLoader extends Singleton {
 		foreach ( $data as $key => &$value ) {
 			if ( in_array( $key, [ 'keywords', 'post_types', 'supports_align' ], true ) ) {
 				$value = $this->parse_coma_separated_list( $value );
-			} elseif ( 'supports_spacing' === $key ) {
+			} elseif ( 'supports_spacing' === $key && 'true' === $value ) {
 				$value = [ 'margin' => true, 'padding' => true ];
 			} elseif ( in_array( $value, [ 'true', 'false' ], true ) ) {
 				$value = ( 'true' === $value ) ? true : false;
