@@ -406,7 +406,7 @@ class BlockLoader extends Singleton {
 	/**
 	 * Checks whether WordPress supports block wrapper attributes.
 	 *
-	 * @since [Next]
+	 * @since 1.0.7
 	 * @return  bool
 	 */
 	protected function supports_block_wrapper_attributes() {
