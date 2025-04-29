@@ -4,6 +4,7 @@ All notable changes to this project will be documented in this file.
 ## [Next]
 
 * [Added] Render block wrapper attributes
+* [Added] Support for block spacing
 
 ## 1.0.6
 
